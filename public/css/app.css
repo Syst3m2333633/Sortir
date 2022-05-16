@@ -30,6 +30,10 @@ body > .container {
     min-height: 100vh;
 }
 
+header {
+    display: flex;
+}
+
 header img {
     height: 70px;
 }
@@ -42,10 +46,16 @@ nav ul {
     display: flex;
     list-style: none;
     padding-left: 0;
+    margin-right: 0;
+    margin-left: 70rem;
+
 }
 
 nav li {
+    margin-top: 2rem;
     margin-right: 1rem;
+    margin-left: 2rem;
+    font-size: 125%;
 }
 
 .series-list {
