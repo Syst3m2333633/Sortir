@@ -6,11 +6,21 @@
           content="width=device-width, user-scalable=yes, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Sortir!{% endblock %}</title>
+
+    {# Pour la normalisation d'un site utiliser normalize #}
+    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+
+    {# utilisation d'un css particulier #}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    {# Appel de l'icone pour l'onglet #}
+    <link rel="icon" href="{{ asset('img/icon.png')}}">
 </head>
 <body>
 
     <header>
-        <h1>Sortir!</h1>
+        {# Utilisation du logo comme lien vers la page d'acceuil #}
+        <h1><a href="{{ path('main_home') }}"><img src="{{ asset('img/icon.png') }}" alt="Sortir!"></a> </h1>
         {% include ('nav.html.twig') %}
     </header>
     <main>
