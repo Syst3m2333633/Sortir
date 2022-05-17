@@ -112,3 +112,11 @@ select {
     max-height: 200px;
     margin-right: 0.6rem;
 }
+
+#userCreationForm{
+    border: 2px solid red;
+    width: 40%;
+    margin: auto;
+}
+
+
