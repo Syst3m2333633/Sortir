@@ -1,5 +1,6 @@
 body {
-    background: linear-gradient(#000000, #132135);
+    background: rgb(226,207,221);
+    background: linear-gradient(90deg, rgba(226,207,221,1) 0%, rgba(242,241,217,1) 100%);
     background-attachment: fixed;
     color: #EEE;
     font-family: 'Crimson Text', serif;
@@ -28,7 +29,10 @@ body > .container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
 
+boutonForm{
+    margin:auto;
 }
 
 header {
@@ -51,9 +55,7 @@ nav ul {
 }
 
 nav li {
-    margin-top: 2rem;
-    margin-right: 1rem;
-    margin-left: 2rem;
+    color:red;
     font-size: 125%;
 }
 
@@ -72,8 +74,14 @@ textarea,
 select {
     margin-bottom: 1rem;
     box-sizing: border-box;
-    width: 150px;
-    max-width: 50%;
+    width: 100%;
+}
+
+p,
+h1,
+h2 {
+    color:black;
+    font-family: 'Lobster', cursive;
 }
 
 .flash {
@@ -112,10 +120,6 @@ select {
     margin-right: 0.6rem;
 }
 
-#userCreationForm{
-    border: 2px solid red;
-    width: 40%;
-    margin: auto;
-}
+
 
 

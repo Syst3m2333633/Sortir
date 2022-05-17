@@ -1,17 +1,45 @@
 {% extends 'base.html.twig' %}
 
-
-
 {% block body %}
-    <div>
-        <h2>Mon profil</h2>
-        <div id="userCreationForm">
-            {{ form_start(userForm) }}
-            {{ form_widget(userForm) }}
-            <p>Rajouter les boutons Campus et Télécharger une photo</p>
-            <button>Valider</button>
-            <button>Annuler</button>
-            {{form_end(userForm)}}
+    <div >
+        <h2 class="text-center">Mon profil</h2>
+        <div class="container">
+            <img class="" src="{{ asset('img/sagat.jpg') }}">
+            <div id="userCreationForm" class="col-10 container">
+                <div class="row">
+                    <p class="col-4">Pseudonyme</p>
+                    <div class="col-8">{{ form_widget(userForm.pseudo) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Nom</p>
+                    <div class="col-8">{{ form_widget(userForm.nom) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Prenom</p>
+                    <div class="col-8">{{ form_widget(userForm.prenom) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Telephone</p>
+                    <div class="col-8">{{ form_widget(userForm.Telephone) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Email</p>
+                    <div class="col-8">{{ form_widget(userForm.mail) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Mot de passe</p>
+                    <div class="col-8">{{ form_widget(userForm.password) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Confirmation</p>
+                    <div class="col-8">{{ form_widget(userForm.confirmation) }}</div>
+                </div>
+                <p>Rajouter les boutons Campus et Télécharger une photo</p>
+                <div class="d-flex justify-content-around">
+                    <button class="shadow p-3 mb-5 bg-white rounded">Valider</button>
+                    <button class="shadow p-3 mb-5 bg-white rounded">Annuler</button>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

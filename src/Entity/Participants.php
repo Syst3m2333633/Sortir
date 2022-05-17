@@ -28,7 +28,7 @@ class Participants
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=35)
      */
     private $prenom;
 
