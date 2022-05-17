@@ -20,6 +20,11 @@ class Participants
     /**
      * @ORM\Column(type="string", length=30)
      */
+    private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
     private $nom;
 
     /**
@@ -43,6 +48,11 @@ class Participants
     private $password;
 
     /**
+     * @ORM\Column(type="string", length=16)
+     */
+    private $confirmation;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $admin;
@@ -57,6 +67,17 @@ class Participants
         return $this->id;
     }
 
+    public function pseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setpseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
     public function getNom(): ?string
     {
         return $this->nom;
@@ -116,6 +137,22 @@ class Participants
 
         return $this;
     }
+
+    public function getConfirmation(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setConfirmation(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+
+
+
 
     public function isAdmin(): ?bool
     {

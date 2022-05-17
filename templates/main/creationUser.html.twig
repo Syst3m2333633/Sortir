@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <div>
+        <h2>Je m'inscris</h2>
+        {{ form(userForm) }}
+    </div>
+{% endblock %}
+
+{% block title %}
+    Création de mon profil | {{ parent() }}
+{% endblock %}

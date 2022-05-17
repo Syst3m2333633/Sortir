@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <div>
+        <h2>Mon profil</h2>
+        <div id="userCreationForm">
+            {{ form_start(userForm) }}
+            {{ form_widget(userForm) }}
+            <p>Rajouter les boutons Campus et Télécharger une photo</p>
+            <button>Valider</button>
+            <button>Annuler</button>
+            {{form_end(userForm)}}
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+    Création de mon profil | {{ parent() }}
+{% endblock %}
