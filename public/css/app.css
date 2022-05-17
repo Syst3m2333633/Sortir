@@ -28,6 +28,7 @@ body > .container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
 }
 
 header {
@@ -47,8 +48,6 @@ nav ul {
     list-style: none;
     padding-left: 0;
     margin-right: 0;
-    margin-left: 70rem;
-
 }
 
 nav li {
