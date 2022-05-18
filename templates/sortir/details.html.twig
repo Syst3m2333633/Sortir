@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-todo afficher le nom de la sortie | {{ parent() }}
+{{ sortie.nom }}| {{ parent() }}
 {% endblock %}
 
 {% block body %}
-    <h2>todo: afficher le nom de la sortie</h2>
-    {# todo: afficher toutes les infos de la sortie #}
+    <h2>{{ sortie.nom }}</h2>
+    <!--<div>{#{{ sortie.dateHeureDebut }}#}</div>-->
+    <div>{{ sortie.duree }}</div>
+    <!--<div>{#{{ sortie.dateLimiteInscription }}#}</div>-->
+    <div>{{ sortie.nbInscriptionsMax }}</div>
+    <div>{{ sortie.infosSortie }}</div>
+    <div>{{ sortie.etat }}</div>
+
 {% endblock %}
 

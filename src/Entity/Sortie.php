@@ -28,7 +28,7 @@ class Sortie
     private $dateHeureDebut;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $duree;
 

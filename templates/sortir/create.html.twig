@@ -1,10 +1,52 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-
+    Créer une nouvelle sortie | {{ parent() }}
 {% endblock %}
 
 {% block body %}
-    <h2>Créer une nouvelle sortie</h2>
+
+    {{ form_start(sortieForm) }}
+    <div>
+        <h2 class="text-center">Créer une sortie</h2>
+        <div class="container">
+            <div class="col-10 container sortieCreationForm">
+                <div class="row">
+                    <p class="col-4">Nom de la sortie :</p>
+                    <div class="col-8">{{ form_widget(sortieForm.nom) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Date et heure de la sortie :</p>
+                    <div class="col-8">{{ form_widget(sortieForm.dateHeureDebut) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Date limite d'inscription :</p>
+                    <div class="col-8">{{ form_widget(sortieForm.dateLimiteInscription) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Nombre de places :</p>
+                    <div class="col-8">{{ form_widget(sortieForm.nbInscriptionsMax) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Durée :</p>
+                    <div class="col-8">{{ form_widget(sortieForm.duree) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Description et infos :</p>
+                    <div class="col-8">{{ form_widget(sortieForm.infosSortie) }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-4">Etat :</p>
+                    <div class="col-8">{{ form_widget(sortieForm.etat) }}</div>
+                </div>
+                <div class="d-flex justify-content-around">
+                    <button class="shadow p-3 mb-5 bg-white rounded" type="button">Enregistrer</button>
+                    <button class="shadow p-3 mb-5 bg-white rounded" type="submit">Publier la sortie</button>
+                    <button class="shadow p-3 mb-5 bg-white rounded" type="reset">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(sortieForm) }}
 {% endblock %}
 

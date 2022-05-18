@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Sortie;
+use App\Form\SortieType;
+use App\Repository\SortieRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,30 +19,82 @@ class SortirController extends AbstractController
     /**
      * @Route("", name="list")
      */
-    public function list(): Response
+    public function list(SortieRepository $sortieRepository): Response
     {
         //todo: aller chercher les sortie en BDD
-        return $this->render('sortir/list.html.twig', [
+        $sortie = $sortieRepository->findAll();
 
+        return $this->render('sortir/list.html.twig', [
+            "sorties" => $sortie
         ]);
     }
 
     /**
      * @Route("/details/{id}", name="details")
      */
-    public function details(int $id): Response
+    public function details(int $id, SortieRepository $sortieRepository): Response
     {
         //todo: aller chercher la sortie en BDD
+        $sortie = $sortieRepository->find($id);
 
-        return $this->render('sortir/details.html.twig');
+        return $this->render('sortir/details.html.twig', [
+            "sortie" =>$sortie
+        ]);
     }
 
     /**
      * @Route("/create", name="create")
      */
-    public function create(Request $request): Response
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
-        dump($request);
+        $sortie = new Sortie();
+        $sortieForm = $this->createForm(SortieType::class, $sortie);
+
+        dump($sortie);
+        $sortieForm->handleRequest($request);
+        dump($sortie);
+
+        $entityManager->persist($sortie);
+        $entityManager->flush();
+        //todo traiter le formulaire
+
+        return $this->render('sortir/create.html.twig', [
+            'sortieForm' => $sortieForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/demo", name="demo")
+     */
+    public function demo(EntityManagerInterface $entityManager): Response
+    {
+        $sortie = new Sortie();
+
+        //Hydratation de toutes les propriétés
+        $sortie->setNom('catheland');
+        $sortie->setDateHeureDebut(new \DateTime());
+        $sortie->setDuree(2.0);
+        $sortie->setDateLimiteInscription(new \DateTime());
+        $sortie->setNbInscriptionsMax(20);
+        $sortie->setInfosSortie('la sortie autour de la plage');
+        $sortie->setEtat(true);
+
+        dump($sortie);
+        $entityManager->persist($sortie);
+        $entityManager->flush();
+        dump($sortie);
         return $this->render('sortir/create.html.twig');
     }
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    /**
+    public function delete(Sortie $sortie, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($sortie);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('main_home');
+    }*/
 }

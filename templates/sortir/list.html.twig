@@ -4,11 +4,20 @@
 
     <section>
 
-        todo: afficher les sorties
+        {# Boucle sur le tableau de sortie #}
+        {% for sortie in sorties %}
+            <article>
+                <a href="{{ path('sortir_details', {'id': sortie.id}) }}" title="Voir les détails de la sortie" alt="{{ sortie.nom}}">
+                    <img src="{{ asset('img/sorties/plage.jpg') }}" alt="{{ sortie.nom}}">
+                </a>
+            </article>
+        {% endfor %}
 
     </section>
 
 {% endblock %}
 
-{% block title %}{{ parent() }} | Liste [{% endblock %}
+{% block title %}
+    Les meilleurs sorties | {{ parent() }}
+{% endblock %}
 
