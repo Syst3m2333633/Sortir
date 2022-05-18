@@ -54,13 +54,18 @@ class SortirController extends AbstractController
         $sortieForm->handleRequest($request);
         dump($sortie);
 
-        $entityManager->persist($sortie);
-        $entityManager->flush();
+        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
+            $entityManager->persist($sortie);
+            $entityManager->flush();
+        }
+
+
         //todo traiter le formulaire
 
         return $this->render('sortir/create.html.twig', [
             'sortieForm' => $sortieForm->createView()
         ]);
+
     }
 
     /**
