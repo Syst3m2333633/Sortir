@@ -47,11 +47,5 @@ class MainController extends AbstractController
         return $this->render('main/profil.html.twig');
     }
 
-    /**
-     * @Route ("/login", name="main_login")
-     */
-    public function login()
-    {
-        return $this->render('main/login.html.twig');
-    }
+
 }
