@@ -6,7 +6,7 @@ use App\Repository\ParticipantsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ParticipantsRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\ParticipantsRepository", repositoryClass=ParticipantsRepository::class)
  */
 class Participants
 {
@@ -67,17 +67,18 @@ class Participants
         return $this->id;
     }
 
-    public function pseudo(): ?string
+    public function getPseudo(): ?string
     {
         return $this->pseudo;
     }
 
-    public function setpseudo(string $pseudo): self
+    public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
 
         return $this;
     }
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -140,12 +141,12 @@ class Participants
 
     public function getConfirmation(): ?string
     {
-        return $this->password;
+        return $this->confirmation;
     }
 
-    public function setConfirmation(string $password): self
+    public function setConfirmation(string $confirmation): self
     {
-        $this->password = $password;
+        $this->confirmation = $confirmation;
 
         return $this;
     }
