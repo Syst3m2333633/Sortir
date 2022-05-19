@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SortieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SortieRepository::class)
@@ -18,6 +19,8 @@ class Sortie
     private $id;
 
     /**
+     * @Assert\NotBlank(message="S'il vous plaît, donner un nom à votre sortie!")
+     * @Assert\Length(min="5", max="35")
      * @ORM\Column(type="string", length=35)
      */
     private $nom;
@@ -28,16 +31,19 @@ class Sortie
     private $dateHeureDebut;
 
     /**
+     * @Assert\Range(min="0", max="100", notInRangeMessage="Vous n'êtes pas entre 0 et 100")
      * @ORM\Column(type="integer")
      */
     private $duree;
 
     /**
+     * @Assert\LessThanOrEqual(propertyPath="dateHeureDebut")
      * @ORM\Column(type="datetime")
      */
     private $dateLimiteInscription;
 
     /**
+     * @Assert\Range(min="2", max="50", notInRangeMessage="Vous ne pouvez pas organiser une sortie ou vous seriez seul!")
      * @ORM\Column(type="integer")
      */
     private $nbInscriptionsMax;

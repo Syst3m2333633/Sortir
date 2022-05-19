@@ -50,17 +50,16 @@ class SortirController extends AbstractController
         $sortie = new Sortie();
         $sortieForm = $this->createForm(SortieType::class, $sortie);
 
-        dump($sortie);
         $sortieForm->handleRequest($request);
-        dump($sortie);
 
         if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
             $entityManager->persist($sortie);
             $entityManager->flush();
+            $this->addFlash('success', 'Sortie Ajoutée!');
+            return $this->redirectToRoute('sortir_details', [
+                'id' => $sortie->getId()
+            ]);
         }
-
-
-        //todo traiter le formulaire
 
         return $this->render('sortir/create.html.twig', [
             'sortieForm' => $sortieForm->createView()

@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <h2>{{ sortie.nom }}</h2>
-    <!--<div>{#{{ sortie.dateHeureDebut }}#}</div>-->
-    <div>{{ sortie.duree }}</div>
-    <!--<div>{#{{ sortie.dateLimiteInscription }}#}</div>-->
-    <div>{{ sortie.nbInscriptionsMax }}</div>
-    <div>{{ sortie.infosSortie }}</div>
-    <div>{{ sortie.etat }}</div>
+    <h2>Nom de la sortie :{{ sortie.nom }}</h2>
+    <div>Date et heure de la sortie :{{ sortie.dateHeureDebut }}</div>
+    <div>Date limite d'inscription :{{ sortie.dateLimiteInscription }}</div>
+    <div>Nombre de places :{{ sortie.nbInscriptionsMax }}</div>
+    <div>Durée :{{ sortie.duree }}</div>
+    <div>Description et infos :{{ sortie.infosSortie }}</div>
+
 
 {% endblock %}
 
