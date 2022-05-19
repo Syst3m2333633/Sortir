@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Participants;
+use App\Entity\Participant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -40,7 +40,7 @@ class CreationUserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Participants::class,
+            'data_class' => Participant::class,
         ]);
     }
 }

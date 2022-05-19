@@ -32,6 +32,7 @@
     <header>
         {# Utilisation du logo comme lien vers la page d'acceuil #}
         <h1><a href="{{ path('main_home') }}"><img src="{{ asset('img/icon.png') }}" alt="Sortir!"/></a></h1>
+        {%block nav%}
         <nav class="container">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
@@ -54,6 +55,7 @@
                 </li>
             </ul>
         </nav>
+        {% endblock%}
     </header>
 
     {# read and display all flash messages #}
@@ -67,8 +69,10 @@
     <main>
         {% block body %}{% endblock %}
     </main>
+    {% block footer %}
     <footer class="border">
         <p>&copy; {{ "now"|date('Y') }} Sortir!<p>
     </footer>
+    {% endblock %}
 </body>
 </html>

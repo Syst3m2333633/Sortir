@@ -2,13 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\ParticipantsRepository;
+use App\Repository\ParticipantRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\ParticipantsRepository", repositoryClass=ParticipantsRepository::class)
- */
-class Participants
+
+/* @UniqueEntity(fields={"identifiant"}, message="There is already an account with this identifiant")
+ * */
+
+
+class Participant
 {
     /**
      * @ORM\Id
@@ -18,9 +23,14 @@ class Participants
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $pseudo;
+    private $identifiant;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=30)
@@ -67,22 +77,47 @@ class Participants
         return $this->id;
     }
 
-    public function getPseudo(): ?string
+    public function getIdentifiant(): ?string
     {
-        return $this->pseudo;
+        return $this->identifiant;
     }
 
-    public function setPseudo(string $pseudo): self
+    public function setIdentifiant(string $identifiant): self
     {
-        $this->pseudo = $pseudo;
+        $this->identifiant = $identifiant;
 
         return $this;
+    }
+
+    public function getUsername(): string
+    {
+        return (string) $this->identifiant;
     }
 
     public function getNom(): ?string
     {
         return $this->nom;
     }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
 
     public function setNom(string $nom): self
     {
@@ -151,10 +186,6 @@ class Participants
         return $this;
     }
 
-
-
-
-
     public function isAdmin(): ?bool
     {
         return $this->admin;
@@ -178,4 +209,31 @@ class Participants
 
         return $this;
     }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    /*
+    public function getPassword()
+    {
+        // TODO: Implement getPassword() method.
+    }
+    */
 }

@@ -1,35 +1,4 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=yes, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sortir!</title>
-
-    {# Pour la normalisation d'un site utiliser normalize #}
-    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-
-    {# Lien bootstrap #}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-    {# utilisation d'un css particulier #}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    {# Appel de l'icone pour l'onglet #}
-    <link rel="icon" href="{{ asset('img/icon.png')}}">
-
-    {# Script bootstrap #}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script></head>
-
-{# Police Josefin (Google Font) #}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Lobster&display=swap" rel="stylesheet">
-<body>
-    <header>
-        <h1><a href="{{ path('main_home') }}"><img src="{{ asset('img/icon.png') }}" alt="Sortir!"/></a></h1>
-    </header>
+{% extends 'base.html.twig' %}
 
 {% block body %}
 <form method="post">
@@ -42,6 +11,7 @@
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+    {% block nav%}{% endblock%}
 
     <div class="container">
         <div class="col-6 container">
@@ -64,13 +34,11 @@
                         <input type="checkbox" class="col-6 " name="_remember_me"><p>Se souvenir de moi</p>
                 </div>
             </div>
-
-
             <div class="d-flex justify-content-around">
-
             </div>
         </div>
-
     </div>
 </form>
 {% endblock %}
+{% block footer%}{% endblock %}
+{% block title %}{{ parent() }} | Login [{% endblock %}
