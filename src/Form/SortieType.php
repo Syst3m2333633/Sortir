@@ -23,7 +23,9 @@ class SortieType extends AbstractType
                 'html5' => true,
                 'widget' => 'single_text',
             ])
-            ->add('duree')
+            ->add('duree', TextType::class, [
+                'label' => 'Duree'
+            ])
             ->add('dateLimiteInscription', DateType::class, [
                 'html5' => true,
                 'widget' => 'single_text',
@@ -31,6 +33,28 @@ class SortieType extends AbstractType
             ->add('nbInscriptionsMax')
             ->add('infosSortie')
             ->add('etat')
+            ->add('campus', TextType::class, [
+                'mapped' => false,
+            ])
+            ->add('ville', TextType::class, [
+                'mapped' => false,
+            ])
+            ->add('lieu', TextType::class, [
+                'mapped' => false,
+            ])
+            ->add('Rue', TextType::class, [
+                'mapped' => false,
+            ])
+            ->add('code_postale', TextType::class, [
+                'mapped' => false,
+            ])
+            ->add('latitude', TextType::class, [
+                'mapped' => false,
+            ])
+            ->add('longitude', TextType::class, [
+                'mapped' => false,
+            ])
+
 
         ;
     }

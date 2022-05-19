@@ -12,33 +12,56 @@
         <div class="container">
             <div class="col-10 container sortieCreationForm">
                 <div class="row">
-                    <p class="col-4">Nom de la sortie :</p>
-                    <div class="col-8">{{ form_widget(sortieForm.nom) }}</div>
+                    <p class="col-3">Nom de la sortie :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.nom) }}</div>
+                    {{ form_errors(sortieForm.nom) }}
+                    <p class="col-3">Campus :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.campus) }}</div>
+                    {{ form_errors(sortieForm.campus) }}
                 </div>
+
                 <div class="row">
-                    <p class="col-4">Date et heure de la sortie :</p>
-                    <div class="col-8">{{ form_widget(sortieForm.dateHeureDebut) }}</div>
+                    <p class="col-3">Date et heure de la sortie :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.dateHeureDebut) }}</div>
+                    <p class="col-3">Ville :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.ville) }}</div>
                 </div>
+
                 <div class="row">
-                    <p class="col-4">Date limite d'inscription :</p>
-                    <div class="col-8">{{ form_widget(sortieForm.dateLimiteInscription) }}</div>
+                    <p class="col-3">Date limite d'inscription :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.dateLimiteInscription) }}</div>
+                    <p class="col-3">Lieu :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.lieu) }}</div>
                 </div>
+
                 <div class="row">
-                    <p class="col-4">Nombre de places :</p>
-                    <div class="col-8">{{ form_widget(sortieForm.nbInscriptionsMax) }}</div>
+                    <p class="col-3">Nombre de places :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.nbInscriptionsMax) }}</div>
+                    <p class="col-3">Rue :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.Rue) }}</div>
                 </div>
+
                 <div class="row">
-                    <p class="col-4">Durée :</p>
-                    <div class="col-8">{{ form_widget(sortieForm.duree) }}</div>
+                    <p class="col-3">Durée :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.duree) }}</div>
+                    <p class="col-3">Code postal :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.code_postale) }}</div>
                 </div>
+
                 <div class="row">
-                    <p class="col-4">Description et infos :</p>
-                    <div class="col-8">{{ form_widget(sortieForm.infosSortie) }}</div>
+                    <p class="col-3">Description et infos :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.infosSortie) }}</div>
+                    <p class="col-3">Latitude :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.latitude) }}</div>
                 </div>
+
                 <div class="row">
-                    <p class="col-4">Etat :</p>
-                    <div class="col-8">{{ form_widget(sortieForm.etat) }}</div>
+                    <p class="col-3">Etat :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.etat) }}</div>
+                    <p class="col-3">Longitude :</p>
+                    <div class="col-3">{{ form_widget(sortieForm.longitude) }}</div>
                 </div>
+
                 <div class="d-flex justify-content-around">
                     <button class="shadow p-3 mb-5 bg-white rounded" type="button">Enregistrer</button>
                     <button class="shadow p-3 mb-5 bg-white rounded" type="submit">Publier la sortie</button>

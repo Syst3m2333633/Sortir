@@ -1,17 +1,64 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-{{ sortie.nom }}| {{ parent() }}
+    {{ sortie.nom }}| {{ parent() }}
 {% endblock %}
 
 {% block body %}
-    <h2>Nom de la sortie :{{ sortie.nom }}</h2>
-    <div>Date et heure de la sortie :{{ sortie.dateHeureDebut }}</div>
-    <div>Date limite d'inscription :{{ sortie.dateLimiteInscription }}</div>
-    <div>Nombre de places :{{ sortie.nbInscriptionsMax }}</div>
-    <div>Durée :{{ sortie.duree }}</div>
-    <div>Description et infos :{{ sortie.infosSortie }}</div>
+    <div>
+        <h2 class="text-center">Créer une sortie</h2>
+        <div class="container">
+            <div class="col-10 container sortieDetails">
+                <div class="row">
+                    <p class="col-3">Nom de la sortie :</p>
+                    <div class="col-3">{{ sortie.nom }}</div>
+                    <p class="col-3">Campus :</p>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row">
+                    <p class="col-3">Date et heure de la sortie :</p>
+                    <div class="col-3">{{ sortie.dateHeureDebut.format('Y-m-d') }}</div>
+                    <p class="col-3">Lieu :</p>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row">
+                    <p class="col-3">Date limite d'inscription :</p>
+                    <div class="col-3">{{ sortie.dateLimiteInscription.format('Y-m-d') }}</div>
+                    <p class="col-3">Rue :</p>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row">
+                    <p class="col-3">Nombre de place :</p>
+                    <div class="col-3">{{ sortie.nbInscriptionsMax }}</div>
+                    <p class="col-3">Code postal :</p>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row">
+                    <p class="col-3">Durée :</p>
+                    <div class="col-3">{{ sortie.duree }} minutes</div>
+                    <p class="col-3">Latitude :</p>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row">
+                    <p class="col-3">Description et info :</p>
+                    <div class="col-3">{{ sortie.infosSortie }}</div>
+                    <p class="col-3">Longitude :</p>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 {% endblock %}
 
+{% block extrastyles %}
+    <style>
+        body {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}

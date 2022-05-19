@@ -59,7 +59,7 @@ nav li {
     font-size: 125%;
 }
 
-.series-list {
+.sortie-list {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -94,13 +94,13 @@ h2 {
 
 .flash-success {background-color: lawngreen}
 
-.serie-details {
+.sortie-details {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 30px;
 }
 
-.serie-details-infos > div {
+.sortie-details-infos > div {
     margin-bottom: 1rem;
 }
 
@@ -110,12 +110,12 @@ h2 {
     }
 }
 
-.seasons article {
+.sortie article {
     display: flex;
     margin-bottom: 1rem;
 }
 
-.seasons article img {
+.sortie article img {
     max-height: 200px;
     margin-right: 0.6rem;
 }

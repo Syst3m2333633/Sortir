@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+
+
 use App\Repository\SortieRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=SortieRepository::class)
  */
 class Sortie
+
 {
     /**
      * @ORM\Id
@@ -20,7 +23,7 @@ class Sortie
 
     /**
      * @Assert\NotBlank(message="S'il vous plaît, donner un nom à votre sortie!")
-     * @Assert\Length(min="5", max="35")
+     * @Assert\Length(min="5", max="35", minMessage="trop court", maxMessage="trop long")
      * @ORM\Column(type="string", length=35)
      */
     private $nom;
