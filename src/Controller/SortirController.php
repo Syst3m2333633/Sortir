@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sortie;
 use App\Form\SortieType;
+use App\Repository\ParticipantRepository;
 use App\Repository\SortieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,8 +35,9 @@ class SortirController extends AbstractController
      */
     public function details(int $id, SortieRepository $sortieRepository): Response
     {
-        //todo: aller chercher la sortie en BDD
+        // Aller chercher la sortie en BDD
         $sortie = $sortieRepository->find($id);
+
 
         return $this->render('sortir/details.html.twig', [
             "sortie" =>$sortie

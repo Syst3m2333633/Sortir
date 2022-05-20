@@ -125,6 +125,16 @@ h2 {
     width: 50%;
 }
 
+.sortieParticipants table{
+    color: black;
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+
+.titreParticipants {
+    color: black;
+}
+
 
 
 

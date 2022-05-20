@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Sortie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,16 @@ class SortieRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Sortie::class);
+    }
+
+    public function findSortiedetails()
+    {
+        $queryBuilder = $this->createQueryBuilder('p');
+        //Création de la jointure pour remonter les participants dans sortie
+
+        $query = $queryBuilder->getQuery();
+
+        return new Paginator($query);
     }
 
     public function add(Sortie $entity, bool $flush = false): void
@@ -38,6 +49,8 @@ class SortieRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+
 
 //    /**
 //     * @return Sortie[] Returns an array of Sortie objects

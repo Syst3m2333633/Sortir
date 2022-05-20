@@ -6,7 +6,7 @@
 
 {% block body %}
     <div>
-        <h2 class="text-center">Créer une sortie</h2>
+        <h2 class="text-center">Afficher une sortie</h2>
         <div class="container">
             <div class="col-10 container sortieDetails">
                 <div class="row">
@@ -48,7 +48,29 @@
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <h4 class="text-left titreParticipants">Liste des participants inscrits :</h4>
+        <div class="col-6 container sortieParticipants">
+            <div class="row">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Pseudo</td>
+                            <td>Nom</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for participant in sortie.participants %}
+                            <tr>
+                                <td>{{ participant.identifiant }}</td>
+                                <td>{{ participant.Nom }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}

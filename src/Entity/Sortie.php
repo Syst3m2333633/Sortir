@@ -5,6 +5,8 @@ namespace App\Entity;
 
 
 use App\Repository\SortieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -12,7 +14,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=SortieRepository::class)
  */
 class Sortie
-
 {
     /**
      * @ORM\Id
@@ -60,6 +61,16 @@ class Sortie
      * @ORM\Column(type="boolean")
      */
     private $etat;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="sortie", cascade={"remove"})
+     */
+    private $participants;
+
+    public function __construct()
+    {
+        $this->participants = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -146,6 +157,36 @@ class Sortie
     public function setEtat(bool $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<string, Participant>
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+            $participant->setSortie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        if ($this->participants->removeElement($participant)) {
+            // set the owning side to null (unless already changed)
+            if ($participant->getSortie() === $this) {
+                $participant->setSortie(null);
+            }
+        }
 
         return $this;
     }
