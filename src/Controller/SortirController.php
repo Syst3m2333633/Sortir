@@ -37,8 +37,14 @@ class SortirController extends AbstractController
     {
         // Aller chercher la sortie en BDD
         $sortie = $sortieRepository->find($id);
+        //dd($sortie);//sortie avec les champs complet
+        //Boucle pour remonter les participants
+        foreach ($sortie->getParticipants() as $participant) {
+            echo $participant->getIdentifiant();
+            echo $participant->getNom();
+    }
 
-
+        
         return $this->render('sortir/details.html.twig', [
             "sortie" =>$sortie
         ]);
