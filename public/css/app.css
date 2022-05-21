@@ -31,9 +31,6 @@ body > .container {
     min-height: 100vh;
 }
 
-boutonForm{
-    margin:auto;
-}
 
 header {
     display: flex;
@@ -123,16 +120,6 @@ h2 {
 
 .checkbox{
     width: 50%;
-}
-
-.sortieParticipants table{
-    color: black;
-    border: solid 1px black;
-    border-collapse: collapse;
-}
-
-.titreParticipants {
-    color: black;
 }
 
 

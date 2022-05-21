@@ -7,8 +7,8 @@
     {% endif %}
 
     {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        <div class="mb-3" id="logged-on-phrase">
+            <span id="logged-on-phrase">Tu es loggé en tant que {{ app.user.userIdentifier }},<br> <a href="{{ path('main_home') }}">Accueil</a> <a href="{{ path('app_logout') }}">Logout</a></span>
         </div>
     {% endif %}
     {% block nav%}{% endblock%}
@@ -17,11 +17,11 @@
         <div class="col-6 container">
             <div class="row">
                 <p class="col-3">Identifiant :</p>
-                <input type="text" class="col-8"  value="{{ last_username }}" name="identifiant" id="inputIdentifiant" class="form-control" autocomplete="username" required autofocus>
+                <input type="text" class="col-8 form-control"  value="{{ last_username }}" name="identifiant" id="inputIdentifiant" autocomplete="username" required autofocus>
             </div>
             <div class="row">
                 <p class="col-3">Mot de passe :</p>
-                <input type="password" class="col-8" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                <input type="password" class="col-8 form-control" name="password" id="inputPassword" autocomplete="current-password" required>
             </div>
             <div class="row">
                 <input type="hidden" name="_csrf_token"

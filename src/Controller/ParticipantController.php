@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Participant;
-use App\Entity\User;
 use App\Form\CreationUserType;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthentificator;
@@ -46,7 +45,7 @@ class ParticipantController extends AbstractController
             );
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('participant/creationParticipant.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
@@ -55,7 +54,7 @@ class ParticipantController extends AbstractController
      */
     public function demo(EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
+        $user = new Participant();
         $user->setIdentifiant('Sagat');
         $user->setPassword('sagatnakmuay');
         /*$user->setAdmin('true');
@@ -70,16 +69,27 @@ class ParticipantController extends AbstractController
     /**
      * @Route("/creation_user", name="participant_create")
      */
-    public function create(Request $request): Response
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = new Participant();
+        dump($user);
         $userForm = $this->createForm(CreationUserType::class, $user);
         $userForm->handleRequest($request);
-        dump ($user);
+        dump($user);
 
+        if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+            $this->addFlash('success', 'Sortie Ajoutée!');
+            return $this->redirectToRoute('main_home', [
+                'id' => $participant->getId()
+            ]);
+        }
 
-        return $this->render('participant/creationUser.html.twig', [
+        return $this->render('participant/creationParticipant.twig', [
             "userForm" => $userForm->createView()
+
+
         ]);
     }
 
@@ -89,14 +99,14 @@ class ParticipantController extends AbstractController
     public function insertionDemo(EntityManagerInterface $entityManager): Response
     {
         $user = new Participant();
-        $user->setPseudo('Blanka');
+        $user->setIdentifiant('Blanka');
         $user->setNom('Blanka');
         $user->setPrenom('Charlie');
         $user->setTelephone('0448787896');
-        $user->setMail('edf@sf.com');
+        $user->setEmail()('edf@sf.com');
         $user->setPassword('bg');
         $user->setConfirmation('');
-        $user->setAdmin('true');
+        $user->setAdministrateur('true');
         $user->setActif('true');
         dump($user);
         $entityManager->persist($user);

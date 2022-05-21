@@ -13,7 +13,7 @@ class CreationUserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pseudo', TextType::class, [
+            ->add('identifiant', TextType::class, [
                 'label'=> 'Pseudonyme'
             ])
             ->add('nom', TextType::class, [
@@ -23,7 +23,7 @@ class CreationUserType extends AbstractType
                 'label'=> 'Prenom'
             ])
             ->add('Telephone')
-            ->add('mail', TextType::class, [
+            ->add('email', TextType::class, [
                 'label'=> 'Email'
             ])
             ->add('password', TextType::class, [
