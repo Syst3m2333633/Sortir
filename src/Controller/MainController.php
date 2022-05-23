@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @Route ("/home", name="main_home")
+     * @Route ("user/home", name="main_home")
      */
     public function home()
     {
@@ -16,7 +16,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route ("/test", name="main_test")
+     * @Route ("user/test", name="main_test")
      */
     public function test()
     {
@@ -24,7 +24,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route ("/ville", name="main_ville")
+     * @Route ("admin/ville", name="main_ville")
      */
     public function ville()
     {
@@ -32,7 +32,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route ("/campus", name="main_campus")
+     * @Route ("admin/campus", name="main_campus")
      */
     public function campus()
     {
@@ -40,7 +40,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route ("/profil", name="main_profil")
+     * @Route ("/user/profil", name="main_profil")
      */
     public function profil()
     {
