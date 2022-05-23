@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<form method="post">
+
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -13,6 +13,7 @@
     {% endif %}
     {% block nav%}{% endblock%}
 
+
     <div class="container">
         <div class="col-6 container">
             <div class="row">
@@ -21,7 +22,7 @@
             </div>
             <div class="row">
                 <p class="col-3">Mot de passe :</p>
-                <input type="password" class="col-8 form-control" name="password" id="inputPassword" autocomplete="current-password" required>
+                <input type="password" class="col-8 form-control" name="plainPassword" id="inputPassword" autocomplete="current-password" required>
             </div>
             <div class="row">
                 <input type="hidden" name="_csrf_token"
@@ -38,7 +39,9 @@
             </div>
         </div>
     </div>
-</form>
+
+
+
 {% endblock %}
 {% block footer%}{% endblock %}
 {% block title %}{{ parent() }} | Login [{% endblock %}

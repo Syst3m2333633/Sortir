@@ -34,6 +34,10 @@ class CreationUserType extends AbstractType
                 'label'=> 'Confirmation'
             ])
 
+            ->add('campus', TextType::class, [
+        'label'=> 'Campus'
+    ])
+
         ;
     }
 
