@@ -15,6 +15,7 @@
                     <p class="col-3">Campus :</p>
                     <div class="col-3"></div>
                 </div>
+                </div>
                 <div class="row">
                     <p class="col-3">Date et heure de la sortie :</p>
                     <div class="col-3">{{ sortie.dateHeureDebut.format('Y-m-d') }}</div>
@@ -60,7 +61,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for participant in sortie.participants %}
+                        {% for participant in sortie.participant %}
                             <tr>
                                 <td>{{ participant.identifiant }}</td>
                                 <td>{{ participant.Nom }}</td>

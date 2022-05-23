@@ -28,8 +28,7 @@ class SortieRepository extends ServiceEntityRepository
         //Création de la jointure pour remonter les participants dans sortie
 
         $query = $queryBuilder->getQuery();
-
-        return new Paginator($query);
+        return $query->getMaxResults();
     }
 
     public function add(Sortie $entity, bool $flush = false): void
