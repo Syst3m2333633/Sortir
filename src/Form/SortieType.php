@@ -54,8 +54,6 @@ class SortieType extends AbstractType
             ->add('longitude', TextType::class, [
                 'mapped' => false,
             ])
-
-
         ;
     }
 

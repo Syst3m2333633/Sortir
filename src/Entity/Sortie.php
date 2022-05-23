@@ -65,11 +65,23 @@ class Sortie
     /**
      * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="sortie", cascade={"remove"})
      */
+    private $participant;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="sortie")
+     */
     private $participants;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="sorties")
+     */
+    private $Participant;
 
     public function __construct()
     {
+        $this->participant = new ArrayCollection();
         $this->participants = new ArrayCollection();
+        $this->Participant = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -164,15 +176,15 @@ class Sortie
     /**
      * @return Collection<string, Participant>
      */
-    public function getParticipants(): Collection
+    public function getParticipant(): Collection
     {
-        return $this->participants;
+        return $this->participant;
     }
 
     public function addParticipant(Participant $participant): self
     {
-        if (!$this->participants->contains($participant)) {
-            $this->participants[] = $participant;
+        if (!$this->participant->contains($participant)) {
+            $this->participant[] = $participant;
             $participant->setSortie($this);
         }
 
@@ -181,7 +193,7 @@ class Sortie
 
     public function removeParticipant(Participant $participant): self
     {
-        if ($this->participants->removeElement($participant)) {
+        if ($this->participant->removeElement($participant)) {
             // set the owning side to null (unless already changed)
             if ($participant->getSortie() === $this) {
                 $participant->setSortie(null);
@@ -189,5 +201,13 @@ class Sortie
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<string, Participant>
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
     }
 }
