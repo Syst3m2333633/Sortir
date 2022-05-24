@@ -43,7 +43,7 @@ class SortirController extends AbstractController
         foreach ($sortie->getParticipants() as $participant) {
             echo $participant->getIdentifiant();
     }
-        dd($sortie);//sortie avec les champs complet
+        //dd($sortie);//sortie avec les champs complet
         return $this->render('sortir/details.html.twig', [
             "sortie" =>$sortie
         ]);
