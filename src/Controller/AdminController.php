@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Participant;
+use App\Form\CreationUserType;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthentificator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,21 +13,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/admin", name="admin_")
- */
+
 class AdminController extends AbstractController
 {
     // ENREGISTREMENT D'UN NOUVEL UTILISATEUR
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/register", name="admin_register")
+     * @param Request $request
+     * @param UserPasswordHasherInterface $userPasswordHasher
+     * @param UserAuthenticatorInterface $userAuthenticator
+     * @param AppAuthentificator $authenticator
+     * @param EntityManagerInterface $entityManager
+     * @return Response
      */
-
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthentificator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthentificator $authenticator, EntityManagerInterface $entityManager) : Response
     {
         $user = new Participant();
-        $user->setRoles(["ROLE_USER"]);
+
         $userForm = $this->createForm(RegistrationFormType::class, $user);
         $userForm->handleRequest($request);
 
@@ -53,6 +58,32 @@ class AdminController extends AbstractController
         return $this->render('participant/creationParticipant.twig', [
             'registrationForm' => $userForm->createView(),
         ]);
+    }
+
+
+
+// HYDRATATION DE DONNEES
+    /**
+     * @Route("/insertData", name="app_register")
+     */
+
+        public function insertData (EntityManagerInterface $entityManager) {
+
+        $user = new Participant();
+        $user->setIdentifiant("krs");
+        $user->setRoles(["ROLE_USER"]);
+        $user->setNom("Guile");
+        $user->setPrenom("William");
+        $user->setTelephone("0235448511");
+        $user->setEmail("guile@sf2.fr");
+        $user->setPassword("krstest");
+        $user->setConfirmation("krstest");
+        $user->setAdministrateur("false");
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->render("main/home.html.twig");
     }
 
 }

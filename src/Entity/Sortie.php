@@ -2,13 +2,10 @@
 
 namespace App\Entity;
 
-
-
-use App\Repository\SortieRepository;
+use App\Repository\SortieOverwriteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SortieRepository::class)
@@ -23,9 +20,12 @@ class Sortie
     private $id;
 
     /**
-     * @Assert\NotBlank(message="S'il vous plaît, donner un nom à votre sortie!")
-     * @Assert\Length(min="5", max="35", minMessage="trop court", maxMessage="trop long")
-     * @ORM\Column(type="string", length=35)
+     * @ORM\Column(type="string", length=20)
+     */
+    private $idSortie;
+
+    /**
+     * @ORM\Column(type="string", length=50)
      */
     private $nom;
 
@@ -35,19 +35,16 @@ class Sortie
     private $dateHeureDebut;
 
     /**
-     * @Assert\Range(min="0", max="100", notInRangeMessage="Vous n'êtes pas entre 0 et 100")
      * @ORM\Column(type="integer")
      */
     private $duree;
 
     /**
-     * @Assert\LessThanOrEqual(propertyPath="dateHeureDebut")
      * @ORM\Column(type="datetime")
      */
     private $dateLimiteInscription;
 
     /**
-     * @Assert\Range(min="2", max="50", notInRangeMessage="Vous ne pouvez pas organiser une sortie ou vous seriez seul!")
      * @ORM\Column(type="integer")
      */
     private $nbInscriptionsMax;
@@ -58,35 +55,39 @@ class Sortie
     private $infosSortie;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=50)
      */
     private $etat;
 
     /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="sortie", cascade={"remove"})
-     */
-    private $participant;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Participant::class, mappedBy="sortie")
+     * RELATION AVEC ENTITE PARTICIPANT
+     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="sortie")
      */
     private $participants;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Participant::class, inversedBy="sorties")
-     */
-    private $Participant;
+
+
 
     public function __construct()
     {
-        $this->participant = new ArrayCollection();
         $this->participants = new ArrayCollection();
-        $this->Participant = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getIdSortie(): ?string
+    {
+        return $this->idSortie;
+    }
+
+    public function setIdSortie(string $idSortie): self
+    {
+        $this->idSortie = $idSortie;
+
+        return $this;
     }
 
     public function getNom(): ?string
@@ -113,12 +114,12 @@ class Sortie
         return $this;
     }
 
-    public function getDuree(): ?float
+    public function getDuree(): ?int
     {
         return $this->duree;
     }
 
-    public function setDuree(?float $duree): self
+    public function setDuree(int $duree): self
     {
         $this->duree = $duree;
 
@@ -161,12 +162,12 @@ class Sortie
         return $this;
     }
 
-    public function isEtat(): ?bool
+    public function getEtat(): ?string
     {
         return $this->etat;
     }
 
-    public function setEtat(bool $etat): self
+    public function setEtat(string $etat): self
     {
         $this->etat = $etat;
 
@@ -174,18 +175,18 @@ class Sortie
     }
 
     /**
-     * @return Collection<string, Participant>
+     * @return Collection<int, Participant>
      */
-    public function getParticipant(): Collection
+    public function getParticipants(): Collection
     {
-        return $this->participant;
+        return $this->participants;
     }
 
     public function addParticipant(Participant $participant): self
     {
-        if (!$this->participant->contains($participant)) {
-            $this->participant[] = $participant;
-            $participant->setSortie($this);
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+            $participant->addSortie($this);
         }
 
         return $this;
@@ -193,21 +194,10 @@ class Sortie
 
     public function removeParticipant(Participant $participant): self
     {
-        if ($this->participant->removeElement($participant)) {
-            // set the owning side to null (unless already changed)
-            if ($participant->getSortie() === $this) {
-                $participant->setSortie(null);
-            }
+        if ($this->participants->removeElement($participant)) {
+            $participant->removeSortie($this);
         }
 
         return $this;
-    }
-
-    /**
-     * @return Collection<string, Participant>
-     */
-    public function getParticipants(): Collection
-    {
-        return $this->participants;
     }
 }

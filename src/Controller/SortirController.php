@@ -33,10 +33,10 @@ class SortirController extends AbstractController
     /**
      * @Route("/details/{id}", name="details")
      */
-    public function details(SortieRepository $sortieRepository): Response
+    public function details(int $id, SortieRepository $sortieRepository): Response
     {
         // Aller chercher la sortie en BDD
-        $sortie = $sortieRepository->findSortiedetails();
+        $sortie = $sortieRepository->find($id);
 
         //dd($sortie);//sortie avec les champs complet
         //Boucle pour remonter les participants
