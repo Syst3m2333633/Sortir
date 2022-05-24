@@ -13,38 +13,38 @@
                     <p class="col-3">Nom de la sortie :</p>
                     <div class="col-3">{{ sortie.nom }}</div>
                     <p class="col-3">Campus :</p>
-                    <div class="col-3"></div>
+                    <div class="col-3">{{ sortie.campus.nom }}</div>
                 </div>
                 </div>
                 <div class="row">
                     <p class="col-3">Date et heure de la sortie :</p>
                     <div class="col-3">{{ sortie.dateHeureDebut.format('Y-m-d') }}</div>
                     <p class="col-3">Lieu :</p>
-                    <div class="col-3"></div>
+                    <div class="col-3">{{ sortie.lieu.nom }}</div>
                 </div>
                 <div class="row">
                     <p class="col-3">Date limite d'inscription :</p>
                     <div class="col-3">{{ sortie.dateLimiteInscription.format('Y-m-d') }}</div>
                     <p class="col-3">Rue :</p>
-                    <div class="col-3"></div>
+                    <div class="col-3">{{ sortie.lieu.rue }}</div>
                 </div>
                 <div class="row">
                     <p class="col-3">Nombre de place :</p>
                     <div class="col-3">{{ sortie.nbInscriptionsMax }}</div>
                     <p class="col-3">Code postal :</p>
-                    <div class="col-3"></div>
+                    <div class="col-3">{{ sortie.lieu.ville.codePostal }}</div>
                 </div>
                 <div class="row">
                     <p class="col-3">Durée :</p>
                     <div class="col-3">{{ sortie.duree }} minutes</div>
                     <p class="col-3">Latitude :</p>
-                    <div class="col-3"></div>
+                    <div class="col-3">{{ sortie.lieu.latitude }}</div>
                 </div>
                 <div class="row">
                     <p class="col-3">Description et info :</p>
                     <div class="col-3">{{ sortie.infosSortie }}</div>
                     <p class="col-3">Longitude :</p>
-                    <div class="col-3"></div>
+                    <div class="col-3">{{ sortie.lieu.longitude }}</div>
                 </div>
             </div>
         </div>
@@ -63,8 +63,8 @@
                     <tbody>
                         {% for participant in sortie.participant %}
                             <tr>
-                                <td>{{ participant.identifiant }}</td>
-                                <td>{{ participant.Nom }}</td>
+                                <td>{{ sortie.participant.identifiant }}</td>
+                                <td>{{ sortie.participant.nom }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

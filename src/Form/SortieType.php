@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Campus;
 use App\Entity\Sortie;
 
 
@@ -33,10 +34,10 @@ class SortieType extends AbstractType
             ->add('nbInscriptionsMax')
             ->add('infosSortie')
             ->add('etat')
-            ->add('campus', TextType::class, [
+            ->add('campus', Campus::class, [
                 'mapped' => false,
             ])
-            ->add('ville', TextType::class, [
+            ->add('ville', ville::class, [
                 'mapped' => false,
             ])
             ->add('lieu', TextType::class, [

@@ -65,6 +65,29 @@ class Sortie
      */
     private $participants;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Lieu::class, inversedBy="sortie")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $lieu;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Campus::class, inversedBy="sortie")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $campus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Etat::class, inversedBy="sorties")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="organisateur")
+     */
+    private $participant;
+
 
 
 
@@ -197,6 +220,54 @@ class Sortie
         if ($this->participants->removeElement($participant)) {
             $participant->removeSortie($this);
         }
+
+        return $this;
+    }
+
+    public function getLieu(): ?Lieu
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(?Lieu $lieu): self
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    public function getCampus(): ?Campus
+    {
+        return $this->campus;
+    }
+
+    public function setCampus(?Campus $campus): self
+    {
+        $this->campus = $campus;
+
+        return $this;
+    }
+
+    public function getStatut(): ?Etat
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?Etat $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getParticipant(): ?Participant
+    {
+        return $this->participant;
+    }
+
+    public function setParticipant(?Participant $participant): self
+    {
+        $this->participant = $participant;
 
         return $this;
     }
