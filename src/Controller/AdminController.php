@@ -83,7 +83,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/create", name="admin_create")
+     * @Route("/create", name="create")
      */
     public function create(Request $request, EntityManagerInterface $entityManager): Response
     {

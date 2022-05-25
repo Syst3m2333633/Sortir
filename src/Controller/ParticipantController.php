@@ -16,7 +16,16 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class ParticipantController extends AbstractController
 {
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function delete(Participant $participant, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($participant);
+        $entityManager->flush();
 
+        return $this->redirectToRoute('main_home');
+    }
 
 
 }

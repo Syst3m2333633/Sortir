@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Participant;
 
 use App\Entity\Campus;
+use App\Entity\Lieu;
+use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Entity\Ville;
 use Symfony\Component\Form\AbstractType;
@@ -36,24 +38,39 @@ class SortieType extends AbstractType
             ->add('infosSortie')
             ->add('etat')
             ->add('campus', Campus::class, [
+                'class' => Campus::class,
                 'mapped' => false,
             ])
-            ->add('ville', ville::class, [
+            ->add('ville', Ville::class, [
+                'class' => Ville::class,
                 'mapped' => false,
             ])
-            ->add('lieu', TextType::class, [
+            ->add('lieu', Lieu::class, [
+                'class' => Lieu::class,
                 'mapped' => false,
             ])
-            ->add('Rue', TextType::class, [
+            ->add('Rue', Lieu::class, [
+                'class' => Lieu::class,
                 'mapped' => false,
             ])
-            ->add('code_postale', TextType::class, [
+            ->add('code_postale', Ville::class, [
+                'class' => Ville::class,
                 'mapped' => false,
             ])
-            ->add('latitude', TextType::class, [
+            ->add('latitude', Lieu::class, [
+                'class' => Lieu::class,
                 'mapped' => false,
             ])
-            ->add('longitude', TextType::class, [
+            ->add('longitude', Lieu::class, [
+                'class' => Lieu::class,
+                'mapped' => false,
+            ])
+            ->add('pseudo', Participant::class, [
+                'class' => Participant::class,
+                'mapped' => false,
+            ])
+            ->add('nom', Participant::class, [
+                'class' => Participant::class,
                 'mapped' => false,
             ])
         ;
