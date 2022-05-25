@@ -40,7 +40,6 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('confirmation')
             ->add('administrateur');
     }
 

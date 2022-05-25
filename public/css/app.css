@@ -2,7 +2,6 @@ body {
     background: rgb(226,207,221);
     background: linear-gradient(90deg, rgba(226,207,221,1) 0%, rgba(242,241,217,1) 100%);
     background-attachment: fixed;
-    color: #EEE;
     font-family: 'Crimson Text', serif;
 }
 

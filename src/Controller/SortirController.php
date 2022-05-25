@@ -13,12 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("Sortir", name="sortir_")
+ * @Route("/user", name="sortir_")
  */
 class SortirController extends AbstractController
 {
     /**
-     * @Route("", name="list")
+     * @Route("/sorties", name="list")
      */
     public function list(SortieRepository $sortieRepository): Response
     {
@@ -31,7 +31,7 @@ class SortirController extends AbstractController
     }
 
     /**
-     * @Route("/details/{id}", name="details")
+     * @Route("/sorties/details/{id}", name="details")
      */
     public function details(int $id, SortieRepository $sortieRepository): Response
     {
@@ -47,51 +47,8 @@ class SortirController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/create", name="create")
-     */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $sortie = new Sortie();
-        $sortieForm = $this->createForm(SortieType::class, $sortie);
-        $sortieForm->handleRequest($request);
 
-        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
-            $entityManager->persist($sortie);
-            $entityManager->flush();
-            $this->addFlash('success', 'Sortie Ajoutée!');
-            return $this->redirectToRoute('sortir_details', [
-                'id' => $sortie->getId()
-            ]);
-        }
 
-        return $this->render('sortir/create.html.twig', [
-            'sortieForm' => $sortieForm->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/demo", name="demo")
-     */
-    public function demo(EntityManagerInterface $entityManager): Response
-    {
-        $sortie = new Sortie();
-
-        //Hydratation de toutes les propriétés
-        $sortie->setNom('catheland');
-        $sortie->setDateHeureDebut(new \DateTime());
-        $sortie->setDuree(2.0);
-        $sortie->setDateLimiteInscription(new \DateTime());
-        $sortie->setNbInscriptionsMax(20);
-        $sortie->setInfosSortie('la sortie autour de la plage');
-        $sortie->setEtat(true);
-
-        dump($sortie);
-        $entityManager->persist($sortie);
-        $entityManager->flush();
-        dump($sortie);
-        return $this->render('sortir/create.html.twig');
-    }
 
     /**
      * @Route("/delete/{id}", name="delete")

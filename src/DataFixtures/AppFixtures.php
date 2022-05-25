@@ -50,7 +50,7 @@ class AppFixtures extends Fixture
         $participant->setAdministrateur("true");
         $participant->setPassword(password_hash('test', PASSWORD_BCRYPT));
         $participant->setTelephone("0235658987");
-        $participant->setRoles(["USER"]);
+        $participant->setRoles(["ROLE_USER"]);
         $participant->setEmail("arash@sf2.fr");
         $participant->setPrenom("Arash");
         $participant->setIdentifiant("honda");
@@ -107,7 +107,7 @@ class AppFixtures extends Fixture
                 $participant->setAdministrateur("TRUE");
                 $participant->setPassword(password_hash('test', PASSWORD_BCRYPT));
                 $participant->setTelephone("0235658987");
-                $participant->setRoles(["ADMIN"]);
+                $participant->setRoles(["ROLE_ADMIN"]);
                 $participant->setEmail("patrice@sf2.fr");
                 $participant->setPrenom("Patrice");
                 $participant->setIdentifiant("zangief");
@@ -164,7 +164,7 @@ class AppFixtures extends Fixture
                 $participant->setAdministrateur("false");
                 $participant->setPassword(password_hash('test', PASSWORD_BCRYPT));
                 $participant->setTelephone("0235658987");
-                $participant->setRoles(["USER"]);
+                $participant->setRoles(["ROLE_USER"]);
                 $participant->setEmail("sacrepeye@sf2.fr");
                 $participant->setPrenom("Henri");
                 $participant->setIdentifiant("balrog");

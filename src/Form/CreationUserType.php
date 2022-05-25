@@ -45,14 +45,8 @@ class CreationUserType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
+            ]);
 
-            ->add('confirmation', TextType::class, [
-                'label'=> 'Confirmation'
-            ])
-
-
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
