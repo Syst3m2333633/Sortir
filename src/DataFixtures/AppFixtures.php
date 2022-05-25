@@ -23,14 +23,14 @@ class AppFixtures extends Fixture
         $campus = new Campus();
         $campus->setNom("Rennes");
         $manager->persist($campus);
-        $manager->flush();
+        $manager->persist($campus);
 
 
         //ETAT
         $etat = new Etat();
         $etat->setLibelle("chaud");
         $manager->persist($campus);
-        $manager->flush();
+        $manager->persist();
 
 
         //VILLE
@@ -38,7 +38,7 @@ class AppFixtures extends Fixture
         $ville->setNom("Langres");
         $ville->setCodePostal("88000");
         $manager->persist($ville);
-        $manager->flush();
+        $manager->persist();
 
 
         //LIEU
@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
         $lieu->setLatitude("58.336");
         $lieu->setLongitude("98.874");
         $manager->persist($lieu);
-        $manager->flush();
+        $manager->persist();
 
 
         //PARTICIPANT
@@ -66,15 +66,15 @@ class AppFixtures extends Fixture
         $participant->setIdentifiant("zangief");
         $participant->setActif("true");
         $manager->persist($participant);
-        $manager->flush();
+        $manager->persist();
 
 
         //SORTIE
         $sortie = new Sortie();
         $sortie->setNom("tournoi de Tekken");
         $sortie->setCampus($campus);
-        $sortie->setDateHeureDebut(DateTime::createFromFormat('Y-m-d H:i:s', "2022-07-10 13.00.00"));
-        $sortie->setDateLimiteInscription(DateTime::createFromFormat('Y-m-d H:i:s', "2022-07-09 18.00.00"));
+        $sortie->setDateHeureDebut(new DateTime());
+        $sortie->setDateLimiteInscription(new DateTime());
         $sortie->setDuree("5");
         $sortie->setEtat("En cours");
         $sortie->setIdSortie("tek");
@@ -82,12 +82,12 @@ class AppFixtures extends Fixture
         $sortie->setLieu($lieu);
         $sortie->setNbInscriptionsMax("25");
         $sortie->setParticipant($participant);
-        $sortie->setStatut("01");
+        $sortie->setStatut($etat);
         $manager->persist($sortie);
+        $manager->persist();
+
+
         $manager->flush();
-
-
-
 
     }
 }
