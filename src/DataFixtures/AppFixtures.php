@@ -53,8 +53,7 @@ class AppFixtures extends Fixture
         $participant->setNom("Chichester");
         $participant->setCampus($campus);
         $participant->setAdministrateur("TRUE");
-        $participant->setConfirmation("test");
-        $participant->setPassword("test");
+        $participant->setPassword(password_hash('test', PASSWORD_BCRYPT));
         $participant->setTelephone("0235658987");
         $participant->setRoles(["ADMIN"]);
         $participant->setEmail("patrice@sf2.fr");

@@ -2,11 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ParticipantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -28,6 +26,12 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=50)
      */
     private ?string $identifiant;
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
 
     /**
      * @ORM\Column(type="json")
@@ -53,17 +57,6 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=60)
      */
     private ?string $email;
-
-    /**@var string The hashed password
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $password;
-
-    /**
-     * @var string The hashed password
-     * @ORM\Column(type="string")
-     */
-    private string $confirmation;
 
     /**
      * @ORM\Column(type="boolean")
@@ -106,6 +99,21 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIdentifiant(string $identifiant): self
     {
         $this->identifiant = $identifiant;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }
@@ -191,34 +199,6 @@ class Participant implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getConfirmation(): ?string
-    {
-        return $this->confirmation;
-    }
-
-    public function setConfirmation(string $confirmation): self
-    {
-        $this->confirmation = $confirmation;
 
         return $this;
     }
