@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("Sortir", name="sortir_")
+ * @Route("sorties", name="sortir_")
  */
 class SortirController extends AbstractController
 {
@@ -23,10 +23,10 @@ class SortirController extends AbstractController
     public function list(SortieRepository $sortieRepository): Response
     {
         //todo: aller chercher les sortie en BDD
-        $sortie = $sortieRepository->findAll();
+        $sorties = $sortieRepository->findAll();
 
         return $this->render('sortir/list.html.twig', [
-            "sortie" => $sortie
+            "sorties" => $sorties
         ]);
     }
 
@@ -38,9 +38,11 @@ class SortirController extends AbstractController
         // Aller chercher la sortie en BDD
         $sortie = $sortieRepository->find($id);
 
+
+
         //dd($sortie);//sortie avec les champs complet
         //Boucle pour remonter les participants
-        
+
         //dd($sortie);//sortie avec les champs complet
         return $this->render('sortir/details.html.twig', [
             "sortie" => $sortie

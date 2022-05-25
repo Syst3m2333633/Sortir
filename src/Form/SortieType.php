@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Campus;
+use App\Entity\Lieu;
+use App\Entity\Participant;
 use App\Entity\Sortie;
 
 
+use App\Entity\Ville;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -34,25 +37,40 @@ class SortieType extends AbstractType
             ->add('nbInscriptionsMax')
             ->add('infosSortie')
             ->add('etat')
-            ->add('campus', Campus::class, [
+            ->add('campus', EntityType::class, [
+                'class' => Campus::class,
                 'mapped' => false,
             ])
-            ->add('ville', ville::class, [
+            ->add('ville', EntityType::class, [
+                'class' => Ville::class,
                 'mapped' => false,
             ])
-            ->add('lieu', TextType::class, [
+            ->add('lieu', EntityType::class, [
+                'class' => Lieu::class,
                 'mapped' => false,
             ])
-            ->add('Rue', TextType::class, [
+            ->add('Rue', EntityType::class, [
+                'class' => Lieu::class,
                 'mapped' => false,
             ])
-            ->add('code_postale', TextType::class, [
+            ->add('code_postale', EntityType::class, [
+                'class' => Ville::class,
                 'mapped' => false,
             ])
-            ->add('latitude', TextType::class, [
+            ->add('latitude', EntityType::class, [
+                'class' => Lieu::class,
                 'mapped' => false,
             ])
-            ->add('longitude', TextType::class, [
+            ->add('longitude', EntityType::class, [
+                'class' => Lieu::class,
+                'mapped' => false,
+            ])
+            ->add('pseudo', EntityType::class, [
+                'class' => Participant::class,
+                'mapped' => false,
+            ])
+            ->add('nom', EntityType::class, [
+                'class' => Participant::class,
                 'mapped' => false,
             ])
         ;

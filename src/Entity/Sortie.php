@@ -61,7 +61,7 @@ class Sortie
 
     /**
      * RELATION AVEC ENTITE PARTICIPANT
-     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="sortie")
+     * @ORM\ManyToMany(targetEntity=Participant::class, mappedBy="sortie", cascade={"remove"})
      */
     private $participants;
 
@@ -87,8 +87,6 @@ class Sortie
      * @ORM\ManyToOne(targetEntity=Participant::class, inversedBy="organisateur")
      */
     private $participant;
-
-
 
 
     public function __construct()
@@ -260,15 +258,5 @@ class Sortie
         return $this;
     }
 
-    public function getParticipant(): ?Participant
-    {
-        return $this->participant;
-    }
 
-    public function setParticipant(?Participant $participant): self
-    {
-        $this->participant = $participant;
-
-        return $this;
-    }
 }

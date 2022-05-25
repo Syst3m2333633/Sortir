@@ -48,7 +48,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <div class="container">
         <h4 class="text-left titreParticipants">Liste des participants inscrits :</h4>
         <div class="col-6 container sortieParticipants">
@@ -61,10 +60,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for participant in sortie.participant %}
+
+                        {% for participant in sortie.participants %}
                             <tr>
-                                <td>{{ sortie.participant.identifiant }}</td>
-                                <td>{{ sortie.participant.nom }}</td>
+                                <td>{{ participant.identifiant }}</td>
+                                <td>{{ participant.nom }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
