@@ -23,14 +23,12 @@ class AppFixtures extends Fixture
         $campus = new Campus();
         $campus->setNom("Rennes");
         $manager->persist($campus);
-        $manager->persist($campus);
 
 
         //ETAT
         $etat = new Etat();
         $etat->setLibelle("chaud");
         $manager->persist($campus);
-        $manager->persist();
 
 
         //VILLE
@@ -38,7 +36,6 @@ class AppFixtures extends Fixture
         $ville->setNom("Langres");
         $ville->setCodePostal("88000");
         $manager->persist($ville);
-        $manager->persist();
 
 
         //LIEU
@@ -49,7 +46,6 @@ class AppFixtures extends Fixture
         $lieu->setLatitude("58.336");
         $lieu->setLongitude("98.874");
         $manager->persist($lieu);
-        $manager->persist();
 
 
         //PARTICIPANT
@@ -66,7 +62,6 @@ class AppFixtures extends Fixture
         $participant->setIdentifiant("zangief");
         $participant->setActif("true");
         $manager->persist($participant);
-        $manager->persist();
 
 
         //SORTIE
@@ -84,7 +79,6 @@ class AppFixtures extends Fixture
         $sortie->setParticipant($participant);
         $sortie->setStatut($etat);
         $manager->persist($sortie);
-        $manager->persist();
 
 
         $manager->flush();
