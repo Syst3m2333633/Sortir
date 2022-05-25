@@ -23,10 +23,10 @@ class SortirController extends AbstractController
     public function list(SortieRepository $sortieRepository): Response
     {
         //todo: aller chercher les sortie en BDD
-        $sortie = $sortieRepository->findAll();
+        $sorties = $sortieRepository->findAll();
 
         return $this->render('sortir/list.html.twig', [
-            "sortie" => $sortie
+            "sorties" => $sorties
         ]);
     }
 
