@@ -5,10 +5,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/user", name="main_")
+ */
+
 class MainController extends AbstractController
 {
     /**
-     * @Route ("user/home", name="main_home")
+     * @Route ("/home", name="home")
      */
     public function home()
     {
@@ -16,7 +20,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route ("user/test", name="main_test")
+     * @Route ("/test", name="test")
      */
     public function test()
     {
@@ -24,28 +28,11 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route ("admin/ville", name="main_ville")
-     */
-    public function ville()
-    {
-        return $this->render('main/ville.html.twig');
-    }
-
-    /**
-     * @Route ("admin/campus", name="main_campus")
-     */
-    public function campus()
-    {
-        return $this->render('main/campus.html.twig');
-    }
-
-    /**
-     * @Route ("/user/profil", name="main_profil")
+     * @Route ("/profil", name="profil")
      */
     public function profil()
     {
         return $this->render('main/profil.html.twig');
     }
-
 
 }

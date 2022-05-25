@@ -13,87 +13,42 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("sorties", name="sortir_")
+ * @Route("/user", name="sortir_")
  */
 class SortirController extends AbstractController
 {
     /**
-     * @Route("", name="list")
+     * @Route("/sorties", name="list")
      */
     public function list(SortieRepository $sortieRepository): Response
     {
         //todo: aller chercher les sortie en BDD
-        $sorties = $sortieRepository->findAll();
+        $sortie = $sortieRepository->findAll();
 
         return $this->render('sortir/list.html.twig', [
-            "sorties" => $sorties
+            "sortie" => $sortie
         ]);
     }
 
     /**
-     * @Route("/details/{id}", name="details")
+     * @Route("/sorties/details/{id}", name="details")
      */
     public function details(int $id, SortieRepository $sortieRepository): Response
     {
         // Aller chercher la sortie en BDD
         $sortie = $sortieRepository->find($id);
 
-
-
         //dd($sortie);//sortie avec les champs complet
         //Boucle pour remonter les participants
-
+        
         //dd($sortie);//sortie avec les champs complet
         return $this->render('sortir/details.html.twig', [
             "sortie" => $sortie
         ]);
     }
 
-    /**
-     * @Route("/create", name="create")
-     */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $sortie = new Sortie();
-        $sortieForm = $this->createForm(SortieType::class, $sortie);
-        $sortieForm->handleRequest($request);
 
-        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
-            $entityManager->persist($sortie);
-            $entityManager->flush();
-            $this->addFlash('success', 'Sortie Ajoutée!');
-            return $this->redirectToRoute('sortir_details', [
-                'id' => $sortie->getId()
-            ]);
-        }
 
-        return $this->render('sortir/create.html.twig', [
-            'sortieForm' => $sortieForm->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/demo", name="demo")
-     */
-    public function demo(EntityManagerInterface $entityManager): Response
-    {
-        $sortie = new Sortie();
-
-        //Hydratation de toutes les propriétés
-        $sortie->setNom('catheland');
-        $sortie->setDateHeureDebut(new \DateTime());
-        $sortie->setDuree(2.0);
-        $sortie->setDateLimiteInscription(new \DateTime());
-        $sortie->setNbInscriptionsMax(20);
-        $sortie->setInfosSortie('la sortie autour de la plage');
-        $sortie->setEtat(true);
-
-        dump($sortie);
-        $entityManager->persist($sortie);
-        $entityManager->flush();
-        dump($sortie);
-        return $this->render('sortir/create.html.twig');
-    }
 
     /**
      * @Route("/delete/{id}", name="delete")
