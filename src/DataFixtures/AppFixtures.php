@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
         //ETAT
         $etat = new Etat();
         $etat->setLibelle("chaud");
-        $manager->persist($campus);
+        $manager->persist($etat);
 
 
         //VILLE
