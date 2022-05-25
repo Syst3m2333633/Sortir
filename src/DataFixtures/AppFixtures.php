@@ -8,96 +8,86 @@ use App\Entity\Lieu;
 use App\Entity\Participant;
 use App\Entity\Sortie;
 use App\Entity\Ville;
-use Doctrine\Persistence\ObjectManager;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+
+
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+
         //CAMPUS
         $campus = new Campus();
-        $campus->setNom("Un campus de test");
-
+        $campus->setNom("Rennes");
         $manager->persist($campus);
-
-        $sortie = new Sortie();
-        $sortie->setCampus($campus);
-
         $manager->flush();
 
-        //PARTICIPANT
-        $participant = new Participant();
-        $participant->setIdentifiant("gdlj44");
-        $participant->setNom("Delajungle");
-        $participant->setPrenom("George");
-        $participant->setTelephone("0102030405");
-        $participant->setEmail("g@dlj.fr");
-        $participant->setPassword("test1234");
-        $participant->setConfirmation("test1234");
-        $participant->setAdministrateur(false);
-        $participant->setActif(true);
-
-        $manager->persist($participant);
-
-        $sortie = new Sortie();
-        $sortie->setParticipant($participant);
-
-        $manager->flush();
 
         //ETAT
         $etat = new Etat();
-        $etat->setLibelle("Créée");
-
-        $manager->persist($etat);
-
-        $sortie = new Sortie();
-        $sortie->setEtat($etat);
-
+        $etat->setLibelle("chaud");
+        $manager->persist($campus);
         $manager->flush();
 
-        //LIEU
-        $lieu = new Lieu();
-        $lieu->setNom("Tour Eiffel");
-        $lieu->setRue("Boulevard de la république");
-        $lieu->setLatitude(48.51);
-        $lieu->setLongitude(2.17);
-
-        $manager->persist($lieu);
-
-        $sortie = new Sortie();
-        $sortie->setLieu($lieu);
-
-        $manager->flush();
 
         //VILLE
         $ville = new Ville();
-        $ville->setNom("Paris");
-        $ville->setCodePostal(75000);
-
+        $ville->setNom("Langres");
+        $ville->setCodePostal("88000");
         $manager->persist($ville);
-
-        $sortie = new Sortie();
-        $sortie->setVille($ville);
-
         $manager->flush();
 
-        //Sortie
-        $sortie = new Sortie();
-        $sortie->setNom("Eiffel");
-        $sortie->setDateHeureDebut("31/08/2022");
-        $sortie->setDuree(5);
-        $sortie->setDateLimiteInscription("21/08/2022");
-        $sortie->setNbInscriptionsMax(50);
-        $sortie->setInfosSortie("blablabla");
-        $sortie->setEtat("Créée");
 
+        //LIEU
+        $lieu = new Lieu();
+        $lieu->setNom("Chez Momo");
+        $lieu->setRue("Rue des hirondelles");
+        $lieu->setVille($ville);
+        $lieu->setLatitude("58.336");
+        $lieu->setLongitude("98.874");
+        $manager->persist($lieu);
+        $manager->flush();
+
+
+        //PARTICIPANT
+        $participant = new Participant();
+        $participant->setNom("Chichester");
+        $participant->setCampus($campus);
+        $participant->setAdministrateur("TRUE");
+        $participant->setConfirmation("test");
+        $participant->setPassword("test");
+        $participant->setTelephone("0235658987");
+        $participant->setRoles(["ADMIN"]);
+        $participant->setEmail("patrice@sf2.fr");
+        $participant->setPrenom("Patrice");
+        $participant->setIdentifiant("zangief");
+        $participant->setActif("true");
+        $manager->persist($participant);
+        $manager->flush();
+
+
+        //SORTIE
+        $sortie = new Sortie();
+        $sortie->setNom("tournoi de Tekken");
+        $sortie->setCampus($campus);
+        $sortie->setDateHeureDebut(DateTime::createFromFormat('Y-m-d H:i:s', "2022-07-10 13.00.00"));
+        $sortie->setDateLimiteInscription(DateTime::createFromFormat('Y-m-d H:i:s', "2022-07-09 18.00.00"));
+        $sortie->setDuree("5");
+        $sortie->setEtat("En cours");
+        $sortie->setIdSortie("tek");
+        $sortie->setInfosSortie("du game");
+        $sortie->setLieu($lieu);
+        $sortie->setNbInscriptionsMax("25");
+        $sortie->setParticipant($participant);
+        $sortie->setStatut("01");
         $manager->persist($sortie);
-
-        $sortie = new Sortie();
-        $sortie->setSortie($sortie);
-
         $manager->flush();
+
+
+
 
     }
 }

@@ -32,7 +32,7 @@ class Sortie
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateHeureDebut;
+    private ?\DateTime $dateHeureDebut;
 
     /**
      * @ORM\Column(type="integer")
@@ -42,7 +42,7 @@ class Sortie
     /**
      * @ORM\Column(type="datetime")
      */
-    private $dateLimiteInscription;
+    private ?\DateTime $dateLimiteInscription;
 
     /**
      * @ORM\Column(type="integer")
@@ -94,6 +94,8 @@ class Sortie
     public function __construct()
     {
         $this->participants = new ArrayCollection();
+        $this->dateHeureDebut = new \DateTime() + "1 week";
+        $this->dateLimiteInscription = new \DateTime() + "3 days";
     }
 
     public function getId(): ?int
