@@ -56,13 +56,14 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Se déconnecter ({{ app.user.identifiant }})</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('admin_create') }}">Créer</a>
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Se connecter</a>
                     </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('sortir_create') }}">Créer</a>
-                </li>
+
                 {% endif %}
             </ul>
         </nav>
