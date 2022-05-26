@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\SortieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -14,9 +16,13 @@ class MainController extends AbstractController
     /**
      * @Route ("/home", name="home")
      */
-    public function home()
+    public function home(SortieRepository $sortieRepository): Response
     {
-       return $this->render('main/home.html.twig');
+        $sorties = $sortieRepository->findAll();
+       return $this->render('main/home.html.twig',[
+        "sorties" => $sorties
+    ]);
+
     }
 
     /**
@@ -34,5 +40,6 @@ class MainController extends AbstractController
     {
         return $this->render('main/profil.html.twig');
     }
+
 
 }

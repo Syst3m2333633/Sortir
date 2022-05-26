@@ -1,6 +1,73 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>BONJOUR TEAM 404</h1>
+
+    <section class="d-flex flex-row-reverse" >
+        <p class="d-flex flex-row-reverse"> Nous sommes le :</p>
+        <p class="d-flex flex-row-reverse"> Bienvenue,</p><br>
+    </section>
+
+    <div class="container flex-row">
+        <div class="container col">
+    <!--LISTE DEROULANTE CAMPUS-->
+            <h2>Campus :</h2>
+            <div id="campusListField">
+                <select id="campusListField">
+                    <option></option>
+                    <option>Strasbourg</option>
+                    <option>Rennes</option>
+                    <option>Toulouse</option>
+                </select>
+            </div>
+    <!--BARRE DE RECHERCHE-->
+            <form id="searchBar" class="col" role="search">
+                <input type="search" id="searchInput" name="q"
+                placeholder="Search..."
+                aria-label="Search through site content">
+                <button><svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg></button>
+            </form>
+        </div>
+
+        <div class="container flex-column col">
+    <!--CHECKBOXES-->
+            <div>
+                <h1> Filtrer les sorties </h1>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="organisateurCoche" name="organisateurCoche" />
+                    <label class="form-check-label" for="Organisateur">Sorties dont je suis l'organisateur/trice</label>
+                </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="inscritCoche" name="inscritCoche"/>
+                <label class="form-check-label" for="inscrit">Sorties auxquelles je suis inscrit/e</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="pasInscritCoche" name="pasInscritCoche"/>
+                <label class="form-check-label" for="pasInscrit">Sorties auxquelles je ne suis pas inscrit/e</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="sortiesPasseesCoche" name="sortiesPasseesCoche"/>
+                <label class="form-check-label" for="sortiesPassees">Sorties passées</label>
+            </div>
+        </div>
+
+        <button type="submit" class="col">Rechercher</button>
+<!--TABLEAU DE SORTIES-->
+        {# Boucle sur le tableau de sortie #}
+        {% for sortie in sorties %}
+            <article>
+                <a href="{{ path('sortir_details', {'id':  sortie.id}) }}" title="Voir les détails de la sortie" alt="{{ sortie.nom}}">{{ sortie.nom }};</a>
+            </article>
+        {% endfor %}
+        <button type="submit">Rechercher</button>
+    </div>
+
+
+
+
 {% endblock %}
+{% block footer %}{%endblock%}
+
 {% block title %}{{ parent() }} | Home [{% endblock %}
