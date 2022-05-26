@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
     <section class="d-flex flex-row-reverse" >
         <p class="d-flex flex-row-reverse"> Nous sommes le :</p>
         <p class="d-flex flex-row-reverse"> Bienvenue,</p><br>
     </section>
 
-    <div class="container flex-row">
-        <div class="container col">
-    <!--LISTE DEROULANTE CAMPUS-->
+    <div class="container homeBox flex-row">
+        <!--LISTE DEROULANTE CAMPUS-->
+        <div class="container col-5">
             <h2>Campus :</h2>
             <div id="campusListField">
                 <select id="campusListField">
@@ -19,7 +18,7 @@
                     <option>Toulouse</option>
                 </select>
             </div>
-    <!--BARRE DE RECHERCHE-->
+            <!--BARRE DE RECHERCHE-->
             <form id="searchBar" class="col" role="search">
                 <input type="search" id="searchInput" name="q"
                 placeholder="Search..."
@@ -28,14 +27,13 @@
             </form>
         </div>
 
-        <div class="container flex-column col">
+        <div class="container flex-column col-5">
     <!--CHECKBOXES-->
-            <div>
-                <h1> Filtrer les sorties </h1>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="organisateurCoche" name="organisateurCoche" />
-                    <label class="form-check-label" for="Organisateur">Sorties dont je suis l'organisateur/trice</label>
-                </div>
+            <h1> Filtrer les sorties </h1>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="organisateurCoche" name="organisateurCoche" />
+                <label class="form-check-label" for="Organisateur">Sorties dont je suis l'organisateur/trice</label>
+            </div>
 
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="inscritCoche" name="inscritCoche"/>
@@ -52,8 +50,11 @@
                 <label class="form-check-label" for="sortiesPassees">Sorties passées</label>
             </div>
         </div>
-
-        <button type="submit" class="col">Rechercher</button>
+        <div class="container col-2">
+            <button type="submit" class="col">Rechercher</button>
+        </div>
+        </div>
+        </div>
 <!--TABLEAU DE SORTIES-->
         {# Boucle sur le tableau de sortie #}
         {% for sortie in sorties %}
@@ -62,7 +63,7 @@
             </article>
         {% endfor %}
         <button type="submit">Rechercher</button>
-    </div>
+
 
 
 
