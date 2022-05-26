@@ -258,5 +258,12 @@ class Sortie
         return $this;
     }
 
+    public function setParticipant(?Participant $participant): self
+    {
+        $this->participants = $this->participants;
+
+        return $this;
+    }
+
 
 }
