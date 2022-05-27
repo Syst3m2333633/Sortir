@@ -2,32 +2,41 @@
 
 namespace App\Controller;
 
-use App\Entity\Participant;
-use App\Form\RegistrationFormType;
-use App\Security\AppAuthentificator;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
+use App\Repository\ParticipantRepository;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+
+/**
+ * @Route("/user", name="participant_")
+ */
 
 class ParticipantController extends AbstractController
 {
+    // AFFICHAGE DES INFOS DE L'UTILISATEUR
     /**
-     * @Route("/delete/{id}", name="delete")
+     * @Route("/{id}", name="participant_infos")
      */
-    public function delete(Participant $participant, EntityManagerInterface $entityManager)
+    public function infos (int $id, ParticipantRepository $ParticipantRepository): Response
     {
-        $entityManager->remove($participant);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('main_home');
+        $participant = $ParticipantRepository->find($id);
+        return $this->render('main/profil.html.twig');
     }
 
 
+
+    // MISE A JOUR DES INFOS DE L'UTILISATEUR
+    /**
+     * @Route("/mise_a_jour{id}", name="participant_infos")
+     */
+    public function infosMAJ (int $id, ParticipantRepository $ParticipantRepository): Response
+    {
+        $participant = $ParticipantRepository->find($id);
+        return $this->render('main/profil.html.twig');
+    }
 }
 
 

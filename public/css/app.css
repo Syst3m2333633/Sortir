@@ -1,11 +1,11 @@
 body {
-    background: rgb(226,207,221);
-    background: linear-gradient(90deg, rgba(226,207,221,1) 0%, rgba(242,241,217,1) 100%);
+    background: rgb(155,205,204);
+    background: linear-gradient(328deg, rgba(155,205,204,1) 0%, rgba(255,255,255,1) 61%);
     background-attachment: fixed;
     font-family: 'Crimson Text', serif;
 }
 
-#campusListField{
+.listField{
     width: 80%;
 }
 
@@ -150,7 +150,7 @@ h2 {
 }
 
 .homeBox{
-    border: 2px solid green;
+
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -158,6 +158,15 @@ h2 {
 
 .border{
     border: 2px solid black;
+}
+
+.topnav input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
 }
 
 

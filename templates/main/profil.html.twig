@@ -1,9 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} | Profil [{% endblock %}
+{% block title %}
+    {{ app.user.identifiant }}| {{ parent() }}
+{% endblock %}
 
 {% block body %}
-    <h1>profil</h1>
-    <h1>Tu vas le faire ce profil</h1>
+    <div>
+        <h2 class="text-center">{{ app.user.identifiant }}</h2>
+        <div class="container">
+            <div class="col-10 container sortieDetails">
+                <div class="row">
+                    <p class="col-3">Nom :</p>
+                    <div class="col-3">{{ app.user.nom }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-3">Prenom :</p>
+                    <div class="col-3">{{ app.user.prenom }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-3">Telephone :</p>
+                    <div class="col-3">{{ app.user.telephone }}</div>
+                </div>
+                <div class="row">
+                    <p class="col-3">Email :</p>
+                    <div class="col-3">{{ app.user.email }}</div>
+                </div>
+            </div>
+         <button>Modifier</button>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block extrastyles %}
+    <style>
+        body {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 {% endblock %}
 

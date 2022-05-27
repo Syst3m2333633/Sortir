@@ -3,10 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Participant;
-use App\Entity\Sortie;
-use App\Form\CreationUserType;
 use App\Form\RegistrationFormType;
-use App\Form\SortieType;
 use App\Security\AppAuthentificator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
+
 
 
 /**
@@ -75,36 +72,21 @@ class AdminController extends AbstractController
                 $authenticator,
                 $request
             );
-
         }
         return $this->render('participant/creationParticipant.twig', [
             'registrationForm' => $userForm->createView(),
         ]);
     }
 
+    // SUPPRIMER UN UTILISATEUR
     /**
-     * @Route("/create", name="create")
+     * @Route("/delete/{id}", name="delete")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function delete(Participant $participant, EntityManagerInterface $entityManager)
     {
-        $sortie = new Sortie();
-        $sortieForm = $this->createForm(SortieType::class, $sortie);
-        $sortieForm->handleRequest($request);
+        $entityManager->remove($participant);
+        $entityManager->flush();
 
-        if ($sortieForm->isSubmitted() && $sortieForm->isValid()) {
-            $entityManager->persist($sortie);
-            $entityManager->flush();
-            $this->addFlash('success', 'Sortie Ajoutée!');
-            return $this->redirectToRoute('sortir_details', [
-                'id' => $sortie->getId()
-            ]);
-        }
-
-        return $this->render('sortir/create.html.twig', [
-            'sortieForm' => $sortieForm->createView()
-        ]);
+        return $this->redirectToRoute('main_home');
     }
-
-
-
 }
