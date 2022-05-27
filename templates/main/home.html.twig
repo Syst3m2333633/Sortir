@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="d-flex flex-row-reverse" >
-        <p class="d-flex flex-row-reverse"> Nous sommes le :</p>
-        <p class="d-flex flex-row-reverse"> Bienvenue,</p><br>
+    <section class="d-flex flex-row-reverse m-5" >
+        <ul>
+            <li class="list-unstyled">Nous sommes le </li>
+            <li class="list-unstyled">Bienvenue,{{ app.user.identifiant }}</li>
+        </ul>
     </section>
 
     <div class="container homeBox flex-row">
@@ -54,13 +56,20 @@
             <button type="submit" class="col">Rechercher</button>
         </div>
         </div>
-        </div>
+
+
 <!--TABLEAU DE SORTIES-->
         {# Boucle sur le tableau de sortie #}
         {% for sortie in sorties %}
-            <article>
-                <a href="{{ path('sortir_details', {'id':  sortie.id}) }}" title="Voir les détails de la sortie" alt="{{ sortie.nom}}">{{ sortie.nom }};</a>
-            </article>
+            <tr >
+                <td class="border">
+                    {{ sortie.nom }}
+                </td>
+            </tr>
+
+
+
+
         {% endfor %}
         <button type="submit">Rechercher</button>
 
